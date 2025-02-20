@@ -1,0 +1,539 @@
+[gd_scene load_steps=53 format=3 uid="uid://cqqi0bawkl50f"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_et2nd"]
+[ext_resource type="PackedScene" uid="uid://ltm4qplkk6gi" path="res://scenes/player.tscn" id="1_g5lgw"]
+[ext_resource type="PackedScene" uid="uid://pkvqwvn6yn2a" path="res://scenes/rooms.tscn" id="2_v536r"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="4_ohyy4"]
+[ext_resource type="Script" path="res://scripts/small_ring.gd" id="5_adwus"]
+[ext_resource type="Texture2D" uid="uid://bb2qmokry4vqn" path="res://art/flying_coin_32px.png" id="6_3hswc"]
+[ext_resource type="Texture2D" uid="uid://dw83eiqvcialn" path="res://art/menu_16_9.png" id="7_iigmk"]
+[ext_resource type="Script" path="res://scripts/popup_window.gd" id="7_wo2yl"]
+[ext_resource type="Texture2D" uid="uid://cqulcy0lsc3he" path="res://art/Character_32px.png" id="8_xhh1y"]
+[ext_resource type="Texture2D" uid="uid://8xrys1a58j7r" path="res://art/heart_and_banana_icons.png" id="9_78it3"]
+[ext_resource type="FontFile" uid="uid://cogd5a1kwwkqt" path="res://fonts/rainyhearts.ttf" id="10_egu6l"]
+[ext_resource type="Texture2D" uid="uid://cloa8vp8x1rpb" path="res://art/menu_16_9_only_border.png" id="12_fxkcd"]
+[ext_resource type="Script" path="res://scenes/talk_window.gd" id="12_iort7"]
+[ext_resource type="Texture2D" uid="uid://pfmq1211miw3" path="res://art/continue_icon.png" id="13_kw5n1"]
+[ext_resource type="Texture2D" uid="uid://canx1jd8i7k8n" path="res://art/big_skeleton.png" id="15_w0vhm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcnur"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prfrk"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4pwy"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx4at"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpwp1"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd8li"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ti5fe"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1e0ah"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nh23"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fm14"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iornb"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_unxws"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcnur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prfrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4pwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx4at")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpwp1")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd8li")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ti5fe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1e0ah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nh23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fm14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iornb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xc24a"]
+size = Vector2(25.25, 11.75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yd2rn"]
+atlas = ExtResource("8_xhh1y")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44m0k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yd2rn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wduex"]
+atlas = ExtResource("9_78it3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxq0x"]
+atlas = ExtResource("9_78it3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4fp6c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wduex")
+}],
+"loop": true,
+"name": &"heart_empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxq0x")
+}],
+"loop": true,
+"name": &"heart_full",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ratji"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bokk"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_481f5"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwh38"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjwlx"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyvuk"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poxtk"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18cse"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpung"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1se6l"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyv58"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pb4si"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ratji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bokk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_481f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwh38")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjwlx")
+}],
+"loop": false,
+"name": &"small_coin_death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyvuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poxtk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18cse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpung")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1se6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyv58")
+}],
+"loop": true,
+"name": &"small_coin_idle",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnmqd"]
+atlas = ExtResource("8_xhh1y")
+region = Rect2(0, 0, 18, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iyewt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnmqd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tpt2"]
+atlas = ExtResource("6_3hswc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_suiih"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tpt2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ram77"]
+atlas = ExtResource("15_w0vhm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bnud"]
+atlas = ExtResource("15_w0vhm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htqid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ram77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bnud")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="game" type="Node"]
+script = ExtResource("1_et2nd")
+
+[node name="Player" parent="." instance=ExtResource("1_g5lgw")]
+position = Vector2(441, 345)
+scale = Vector2(4.5, 4.5)
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(417, 367)
+
+[node name="rooms" parent="." instance=ExtResource("2_v536r")]
+z_index = -1
+metadata/_edit_lock_ = true
+
+[node name="Enemy" type="Node2D" parent="."]
+position = Vector2(-3, 4)
+script = ExtResource("4_ohyy4")
+
+[node name="small_ring1" type="Node2D" parent="Enemy"]
+position = Vector2(1560, 213)
+scale = Vector2(4, 4)
+script = ExtResource("5_adwus")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy/small_ring1"]
+position = Vector2(1.25, 27.5)
+sprite_frames = SubResource("SpriteFrames_unxws")
+
+[node name="Area2D" type="Area2D" parent="Enemy/small_ring1"]
+position = Vector2(-1, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/small_ring1/Area2D"]
+position = Vector2(2.375, 20.375)
+shape = SubResource("RectangleShape2D_xc24a")
+
+[node name="popup_window" type="Node2D" parent="Enemy"]
+position = Vector2(7, 669)
+script = ExtResource("7_wo2yl")
+
+[node name="Camera2D" type="Camera2D" parent="Enemy/popup_window"]
+position = Vector2(579, 274)
+
+[node name="canvas" type="Sprite2D" parent="Enemy/popup_window"]
+position = Vector2(579, 275)
+scale = Vector2(3, 3)
+texture = ExtResource("7_iigmk")
+
+[node name="player" type="AnimatedSprite2D" parent="Enemy/popup_window/canvas"]
+position = Vector2(-81.6667, -10)
+scale = Vector2(1.66667, 1.66667)
+sprite_frames = SubResource("SpriteFrames_44m0k")
+
+[node name="hearts" type="AnimatedSprite2D" parent="Enemy/popup_window/canvas/player"]
+position = Vector2(-11.8, 18.6)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_4fp6c")
+animation = &"heart_full"
+
+[node name="hearts2" type="AnimatedSprite2D" parent="Enemy/popup_window/canvas/player"]
+position = Vector2(1.2, 18.6)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_4fp6c")
+animation = &"heart_full"
+
+[node name="hearts3" type="AnimatedSprite2D" parent="Enemy/popup_window/canvas/player"]
+position = Vector2(-5.4, 18.6)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_4fp6c")
+animation = &"heart_full"
+
+[node name="enemy" type="AnimatedSprite2D" parent="Enemy/popup_window/canvas"]
+position = Vector2(66.3333, -11)
+scale = Vector2(2.33333, 2.33333)
+sprite_frames = SubResource("SpriteFrames_pb4si")
+animation = &"small_coin_idle"
+frame = 1
+
+[node name="fight_button" type="Button" parent="Enemy/popup_window"]
+offset_left = 247.0
+offset_top = 369.0
+offset_right = 467.0
+offset_bottom = 439.0
+flat = true
+
+[node name="fight_text" type="RichTextLabel" parent="Enemy/popup_window"]
+offset_left = 292.0
+offset_top = 371.0
+offset_right = 476.0
+offset_bottom = 449.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.929412, 0.882353, 0.698039, 1)
+theme_override_fonts/normal_font = ExtResource("10_egu6l")
+theme_override_font_sizes/normal_font_size = 64
+text = "fight"
+
+[node name="leave_button" type="Button" parent="Enemy/popup_window"]
+offset_left = 688.0
+offset_top = 369.0
+offset_right = 907.0
+offset_bottom = 439.0
+flat = true
+
+[node name="leave_text" type="RichTextLabel" parent="Enemy/popup_window"]
+offset_left = 729.0
+offset_top = 372.0
+offset_right = 917.0
+offset_bottom = 446.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.929412, 0.882353, 0.698039, 1)
+theme_override_fonts/normal_font = ExtResource("10_egu6l")
+theme_override_font_sizes/normal_font_size = 64
+text = "leave"
+
+[node name="talk_button" type="Button" parent="Enemy/popup_window"]
+offset_left = 485.0
+offset_top = 366.0
+offset_right = 673.0
+offset_bottom = 437.0
+flat = true
+
+[node name="talk_text" type="RichTextLabel" parent="Enemy/popup_window"]
+offset_left = 526.0
+offset_top = 371.0
+offset_right = 682.0
+offset_bottom = 446.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.929412, 0.882353, 0.698039, 1)
+theme_override_fonts/normal_font = ExtResource("10_egu6l")
+theme_override_font_sizes/normal_font_size = 64
+text = "talk"
+
+[node name="talk_window" type="Node2D" parent="Enemy"]
+position = Vector2(0, 1311)
+script = ExtResource("12_iort7")
+
+[node name="Camera2D" type="Camera2D" parent="Enemy/talk_window"]
+position = Vector2(586, 299)
+
+[node name="canvas" type="Sprite2D" parent="Enemy/talk_window"]
+position = Vector2(587, 299)
+scale = Vector2(3, 3)
+texture = ExtResource("12_fxkcd")
+metadata/_edit_lock_ = true
+
+[node name="text_flow_button" type="Button" parent="Enemy/talk_window/canvas"]
+offset_left = -200.0
+offset_top = -114.0
+offset_right = 197.0
+offset_bottom = 117.0
+flat = true
+
+[node name="text1" type="Node2D" parent="Enemy/talk_window/canvas"]
+scale = Vector2(0.7, 0.7)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Enemy/talk_window/canvas/text1"]
+offset_left = -121.429
+offset_top = -73.3333
+offset_right = -5.42857
+offset_bottom = -41.3333
+theme_override_colors/default_color = Color(0.929412, 0.882353, 0.698039, 1)
+theme_override_fonts/normal_font = ExtResource("10_egu6l")
+theme_override_font_sizes/normal_font_size = 16
+text = "hello flying ring, can I pass?"
+
+[node name="player_icon" type="AnimatedSprite2D" parent="Enemy/talk_window/canvas/text1"]
+position = Vector2(-144.286, -64.7618)
+scale = Vector2(1.42857, 1.42857)
+sprite_frames = SubResource("SpriteFrames_iyewt")
+
+[node name="text2" type="Node2D" parent="Enemy/talk_window/canvas"]
+scale = Vector2(0.7, 0.7)
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Enemy/talk_window/canvas/text2"]
+offset_left = 36.1905
+offset_top = -39.5238
+offset_right = 124.19
+offset_bottom = -22.5238
+theme_override_colors/default_color = Color(0.929412, 0.882353, 0.698039, 1)
+theme_override_fonts/normal_font = ExtResource("10_egu6l")
+theme_override_font_sizes/normal_font_size = 16
+text = "chirp, chirp"
+
+[node name="enemy_icon" type="AnimatedSprite2D" parent="Enemy/talk_window/canvas/text2"]
+position = Vector2(134.762, -33.3334)
+scale = Vector2(1.28571, 1.28571)
+sprite_frames = SubResource("SpriteFrames_suiih")
+
+[node name="text3" type="Node2D" parent="Enemy/talk_window/canvas"]
+scale = Vector2(0.7, 0.7)
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Enemy/talk_window/canvas/text3"]
+offset_left = -121.0
+offset_top = -5.0
+offset_right = 17.0
+offset_bottom = 14.0
+theme_override_colors/default_color = Color(0.929412, 0.882353, 0.698039, 1)
+theme_override_fonts/normal_font = ExtResource("10_egu6l")
+theme_override_font_sizes/normal_font_size = 16
+text = "okay, thank you !"
+
+[node name="player_icon2" type="AnimatedSprite2D" parent="Enemy/talk_window/canvas/text3"]
+position = Vector2(-144.286, 2.38141)
+scale = Vector2(1.42857, 1.42857)
+sprite_frames = SubResource("SpriteFrames_iyewt")
+
+[node name="continue_button" type="Node2D" parent="Enemy/talk_window/canvas"]
+
+[node name="button" type="Button" parent="Enemy/talk_window/canvas/continue_button"]
+offset_left = 46.0
+offset_top = 32.0
+offset_right = 102.0
+offset_bottom = 47.0
+flat = true
+
+[node name="continue_sprite" type="Sprite2D" parent="Enemy/talk_window/canvas/continue_button"]
+position = Vector2(74.0667, 40.2)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("13_kw5n1")
+
+[node name="continue_text" type="RichTextLabel" parent="Enemy/talk_window/canvas/continue_button"]
+offset_left = 49.3333
+offset_top = 32.3334
+offset_right = 100.334
+offset_bottom = 49.3334
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.929412, 0.882353, 0.698039, 1)
+theme_override_fonts/normal_font = ExtResource("10_egu6l")
+theme_override_font_sizes/normal_font_size = 16
+text = "continue"
+
+[node name="big_skeleton" type="Node2D" parent="Enemy"]
+position = Vector2(5374, 345)
+scale = Vector2(7, 7)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy/big_skeleton"]
+position = Vector2(1.5, 13.1667)
+sprite_frames = SubResource("SpriteFrames_htqid")
+autoplay = "default"
+
+[connection signal="switch_room" from="rooms" to="Player" method="_door_entered_go_next_room"]
+[connection signal="body_entered" from="Enemy/small_ring1/Area2D" to="Enemy" method="_small_ring1_body_entered"]
+[connection signal="pressed" from="Enemy/popup_window/leave_button" to="Enemy" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Enemy/popup_window/talk_button" to="Enemy" method="_on_talk_button_pressed"]
+[connection signal="button_down" from="Enemy/talk_window/canvas/text_flow_button" to="Enemy/talk_window" method="_on_text_flow_button_button_down"]
+[connection signal="pressed" from="Enemy/talk_window/canvas/continue_button/button" to="Enemy" method="_on_continue_button_pressed"]
